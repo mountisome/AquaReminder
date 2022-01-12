@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mountisome.aquareminder">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity
+            android:name=".activity.RankActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ExchangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.PlantedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ChooseTreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ClockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SetClockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".fragment.BottomFragment"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/back"/>
+        <TextView
+            android:id="@+id/tv_exchange"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="已种植"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_aloe_vera"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/aloe_vera1"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_aloe_vera"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:text="芦荟"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/iv_echinopsis_tubiflora"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/echinopsis_tubiflora1"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_echinopsis_tubiflora"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:text="仙人球"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/iv_green_rose"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="80dp"
+        android:background="@drawable/green_rose1"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_green_rose"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:text="绿萝"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/iv_pachira_macrocarpa"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/pachira_macrocarpa1"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_pachira_macrocarpa"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:text="发财树"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+</RelativeLayout>

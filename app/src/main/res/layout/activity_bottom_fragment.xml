@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2">
+
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="#dcdcdc"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_drink"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/tab_menu_drink"
+            android:text="喝水"/>
+
+        <RadioButton
+            android:id="@+id/rb_tree"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/tab_menu_tree"
+            android:text="种树"/>
+
+        <RadioButton
+            android:id="@+id/rb_person"
+            style="@style/Custom.TabRadioButton"
+            android:drawableTop="@drawable/tab_menu_person"
+            android:text="我"/>
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/ly_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rg_tab">
+    </FrameLayout>
+
+</RelativeLayout>
