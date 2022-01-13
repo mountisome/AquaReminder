@@ -36,31 +36,39 @@
 
 登录界面：
 
-<img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995160.png" style="zoom:20%;" />
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995160.png"></div>
 
 喝水界面：
 
-![](https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995173.png)
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995173.png"></div>
 
 添加喝水量界面：
 
-![](https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995177.png)
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995177.png"></div>
 
 提醒设置界面：
 
-![](https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995183.png)
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995183.png"></div>
+
+种植树木界面：
+
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1642075959.png"></div>
 
 选择树木界面：
 
-![](https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995189.png)
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995189.png"></div>
 
 已种植界面：
 
-![](https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995193.png)
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995193.png"></div>
+
+用户界面：
+
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1642075991.png"></div>
 
 用户排名界面：
 
-![](https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995391.png)
+<div align=center><img src="https://gitee.com/mountisome/images/raw/master/img/Screenshot_1641995391.png"></div>
 
 
 
