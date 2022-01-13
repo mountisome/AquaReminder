@@ -13,7 +13,7 @@ import java.util.List;
 public class DBUtils {
 
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://192.168.0.1/aquareminder?characterEncoding=utf-8";
+    private static String url = "jdbc:mysql://192.168.0.104/aquareminder?characterEncoding=utf-8";
     private static String username = "root"; // 用户名
     private static String password = "root"; // 密码
 
