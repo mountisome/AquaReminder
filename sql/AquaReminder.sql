@@ -18,4 +18,4 @@ show tables;
 insert into user values (1,'user1','123','123@qq.com',0,100,'0000',0,0,0,0,0);
 insert into user values (2,'user2','1234','1234@qq.com',0,5,'0000',0,0,0,0,0);
 insert into user values (3,'user3','12345','12345@qq.com',0,0,'0000',0,0,0,0,0);
-select * from user; 
+select * from user;
