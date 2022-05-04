@@ -1,7 +1,5 @@
 package com.mountisome.aquareminder.bean;
 
-import androidx.annotation.NonNull;
-
 public class User {
 
     private int id;

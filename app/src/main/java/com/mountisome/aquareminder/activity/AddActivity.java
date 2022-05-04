@@ -3,9 +3,11 @@ package com.mountisome.aquareminder.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,22 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mountisome.aquareminder.R;
-import com.mountisome.aquareminder.bean.User;
-import com.mountisome.aquareminder.fragment.BottomFragment;
-import com.mountisome.aquareminder.utils.DBUtils;
-import com.mountisome.aquareminder.utils.Histogram;
+import com.mountisome.aquareminder.utils.MySQLHelper;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String name; // 用户名
     private int water; // 饮水量
-    private int energy; // 能量
     private EditText ed_water; // 饮水量输入框
     private Button tv_finish; // 完成按钮
     private Button btn_50;
     private Button btn_100;
     private Button btn_200;
     private TextView iv_back; // 取消
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +36,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         name = bundle.getString("name");
+        db = new MySQLHelper(this).getWritableDatabase();
 
         updatePersonText();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         ed_water = findViewById(R.id.ed_water);
         tv_finish = findViewById(R.id.tv_finish);
@@ -77,7 +72,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 water += Integer.parseInt(ed_water.getText().toString());
                 addWater(water);
                 updateTotalTime();
-                Intent intent = new Intent(AddActivity.this, BottomFragment.class);
+                Intent intent = new Intent(AddActivity.this, BottomActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("name", name);
                 intent.putExtras(bundle);
@@ -98,40 +93,28 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    // 添加水量
     public void addWater(int water) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                DBUtils.addWater(name, water);
-                Toast.makeText(AddActivity.this, "添加成功",
-                        Toast.LENGTH_SHORT).show();
-                Looper.loop();
-            }
-        };
-        thread.start();
+        String sql = "update user set water = ? where name = ?";
+        Object[] args = new Object[]{water, name};
+        db.execSQL(sql, args);
     }
 
+    // 更新喝水总次数
     public void updateTotalTime() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                DBUtils.updateTotalTime(name);
-            }
-        };
-        thread.start();
+        String sql = "update user set total_time = total_time + 1 where name = ?";
+        Object[] args = new Object[]{name};
+        db.execSQL(sql, args);
     }
 
+    // 更新数据
     public void updatePersonText() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                User user = DBUtils.queryUser(name);
-                water = user.getWater();
-                energy = user.getEnergy();
-            }
-        };
-        thread.start();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]
+                {name});
+        if (cursor.moveToNext()) {
+            water = cursor.getInt(cursor.getColumnIndex("water"));
+        }
+        cursor.close();
     }
 
 }

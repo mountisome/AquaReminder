@@ -1,6 +1,5 @@
 package com.mountisome.aquareminder.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import com.mountisome.aquareminder.R;
 import com.mountisome.aquareminder.activity.ChooseTreeActivity;
@@ -29,10 +26,6 @@ public class TreeFragment extends Fragment implements AdapterView.OnItemClickLis
     private String name;
     private int energy;
 
-    public TreeFragment() {
-    }
-
-    @SuppressLint("ValidFragment")
     public TreeFragment(String name, int energy) {
         this.name = name;
         this.energy = energy;

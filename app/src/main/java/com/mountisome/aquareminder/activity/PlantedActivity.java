@@ -3,13 +3,15 @@ package com.mountisome.aquareminder.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mountisome.aquareminder.R;
-import com.mountisome.aquareminder.utils.DBUtils;
+import com.mountisome.aquareminder.utils.MySQLHelper;
 
 public class PlantedActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class PlantedActivity extends AppCompatActivity {
     private TextView tv_green_rose;
     private TextView tv_pachira_macrocarpa;
     private String name;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,51 +44,55 @@ public class PlantedActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         name = bundle.getString("name");
 
+        db = new MySQLHelper(this).getWritableDatabase();
+
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PlantedActivity.this.finish();
             }
         });
+
         plantedTree();
     }
 
+    // 种植的树木
     public void plantedTree() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                String planted = DBUtils.plantedTree(name);
-                if (planted == null) {
-                    return;
+        String planted = null;
+        Cursor cursor = db.rawQuery("SELECT planted FROM user WHERE name = ?", new String[]
+                {name});
+        if (cursor.moveToNext()) {
+            planted = cursor.getString(cursor.getColumnIndex("planted"));
+        }
+        cursor.close();
+        if (planted == null) {
+            return;
+        }
+        int len = planted.length();
+        for (int i = 0; i < len; i++) {
+            if (planted.charAt(i) == '1') {
+                if (i == 0) {
+                    iv_aloe_vera.setVisibility(View.VISIBLE);
+                    tv_aloe_vera.setVisibility(View.VISIBLE);
+                    break;
                 }
-                int len = planted.length();
-                for (int i = 0; i < len; i++) {
-                    if (planted.charAt(i) == '1') {
-                        if (i == 0) {
-                            iv_aloe_vera.setVisibility(View.VISIBLE);
-                            tv_aloe_vera.setVisibility(View.VISIBLE);
-                            break;
-                        }
-                        else if (i == 1) {
-                            iv_echinopsis_tubiflora.setVisibility(View.VISIBLE);
-                            tv_echinopsis_tubiflora.setVisibility(View.VISIBLE);
-                            break;
-                        }
-                        else if (i == 2) {
-                            iv_green_rose.setVisibility(View.VISIBLE);
-                            tv_green_rose.setVisibility(View.VISIBLE);
-                            break;
-                        }
-                        else if (i == 3) {
-                            iv_pachira_macrocarpa.setVisibility(View.VISIBLE);
-                            tv_pachira_macrocarpa.setVisibility(View.VISIBLE);
-                            break;
-                        }
-                    }
+                else if (i == 1) {
+                    iv_echinopsis_tubiflora.setVisibility(View.VISIBLE);
+                    tv_echinopsis_tubiflora.setVisibility(View.VISIBLE);
+                    break;
+                }
+                else if (i == 2) {
+                    iv_green_rose.setVisibility(View.VISIBLE);
+                    tv_green_rose.setVisibility(View.VISIBLE);
+                    break;
+                }
+                else if (i == 3) {
+                    iv_pachira_macrocarpa.setVisibility(View.VISIBLE);
+                    tv_pachira_macrocarpa.setVisibility(View.VISIBLE);
+                    break;
                 }
             }
-        };
-        thread.start();
+        }
     }
 
 }

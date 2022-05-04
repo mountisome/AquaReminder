@@ -48,6 +48,7 @@ public class SetClockActivity extends AppCompatActivity {
         mContext = SetClockActivity.this;
 
         initRegularClock();
+
         MyAdapter adapter1 = new MyAdapter(mContext, mRList);
         list_regular_clock.setAdapter(adapter1);
         adapter1.setOnCheckedChangeListener(new MyAdapter.onCheckedChangeListener() {

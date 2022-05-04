@@ -36,7 +36,7 @@
             android:name=".activity.SetClockActivity"
             android:exported="false" />
         <activity
-            android:name=".fragment.BottomFragment"
+            android:name=".activity.BottomActivity"
             android:exported="false" />
         <activity
             android:name=".activity.RegisterActivity"

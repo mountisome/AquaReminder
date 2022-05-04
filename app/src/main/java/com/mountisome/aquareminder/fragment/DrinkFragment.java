@@ -2,11 +2,9 @@ package com.mountisome.aquareminder.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +15,6 @@ import com.mountisome.aquareminder.R;
 import com.mountisome.aquareminder.activity.AddActivity;
 import com.mountisome.aquareminder.activity.FitActivity;
 import com.mountisome.aquareminder.activity.SetClockActivity;
-import com.mountisome.aquareminder.bean.User;
-import com.mountisome.aquareminder.utils.DBUtils;
 import com.mountisome.aquareminder.utils.Histogram;
 
 public class DrinkFragment extends Fragment implements View.OnClickListener {
@@ -27,21 +23,15 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
 
     private String name; // 用户名
     private int water; // 饮水量
-    private int energy; // 能量
     private ImageView iv_fit; // 设置
     private ImageView iv_clock; // 闹钟
     private Button btn_add; // 添加
     private Histogram histogram;
     private int tempWater;
 
-    public DrinkFragment() {
-    }
-
-    @SuppressLint("ValidFragment")
-    public DrinkFragment(String name, int water, int energy) {
-        this.name = name;
+    public DrinkFragment(int water, String name) {
         this.water = water;
-        this.energy = energy;
+        this.name = name;
     }
 
     @Override
@@ -61,12 +51,7 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
         if (tempWater >= 1500) {
             tempWater = 1500;
         }
-        updatePersonText();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         if (water >= 1500) {
             water = 1500;
         }
@@ -94,18 +79,6 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
-    }
-
-    public void updatePersonText() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                User user = DBUtils.queryUser(name);
-                water = user.getWater();
-                energy = user.getEnergy();
-            }
-        };
-        thread.start();
     }
 
 }

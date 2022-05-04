@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +17,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.mountisome.aquareminder.R;
-import com.mountisome.aquareminder.activity.ChooseTreeActivity;
-import com.mountisome.aquareminder.activity.FitActivity;
 import com.mountisome.aquareminder.activity.RankActivity;
-import com.mountisome.aquareminder.bean.User;
-import com.mountisome.aquareminder.utils.DBUtils;
+import com.mountisome.aquareminder.utils.MySQLHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,16 +38,10 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
     private SimpleAdapter simpleAdapter;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
+    private SQLiteDatabase db;
 
-    public PersonFragment() {
-    }
-
-    @SuppressLint("ValidFragment")
-    public PersonFragment(String name, int day, int average_water, int average_time) {
+    public PersonFragment(String name) {
         this.name = name;
-        this.day = day;
-        this.average_water = average_water;
-        this.average_time = average_time;
     }
 
     @Override
@@ -67,12 +60,8 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
         TextView fg_person = view.findViewById(R.id.fg_person);
         fg_person.setText(name);
 
+        db = new MySQLHelper(getActivity()).getWritableDatabase();
         updatePersonText();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         tv_day.setText(Integer.toString(day));
         tv_average_water.setText(Integer.toString(average_water));
@@ -115,17 +104,16 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
         return list;
     }
 
+    // 更新数据
     public void updatePersonText() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                User user = DBUtils.queryUser(name);
-                day = user.getDay();
-                average_water = user.getAverage_water();
-                average_time = user.getAverage_time();
-            }
-        };
-        thread.start();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]
+                {name});
+        if (cursor.moveToNext()) {
+            day = cursor.getInt(cursor.getColumnIndex("day"));
+            average_water = cursor.getInt(cursor.getColumnIndex("average_water"));
+            average_time = cursor.getInt(cursor.getColumnIndex("average_time"));
+        }
+        cursor.close();
     }
 
 }

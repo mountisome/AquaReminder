@@ -2,7 +2,10 @@ package com.mountisome.aquareminder.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -11,7 +14,7 @@ import android.widget.SimpleAdapter;
 
 import com.mountisome.aquareminder.R;
 import com.mountisome.aquareminder.bean.User;
-import com.mountisome.aquareminder.utils.DBUtils;
+import com.mountisome.aquareminder.utils.MySQLHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,11 +26,14 @@ public class RankActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView lv_rank;
     private SimpleAdapter simpleAdapter;
     private ImageView iv_back;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
+
+        db = new MySQLHelper(this).getWritableDatabase();
 
         iv_back = findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
@@ -59,19 +65,26 @@ public class RankActivity extends AppCompatActivity implements AdapterView.OnIte
         String[] names = new String[100];
         String[] energies = new String[100];
         final int[] len = new int[1];
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                List<User> userList = DBUtils.getRank();
-                len[0] = userList.size();
-                for (int i = 0; i < len[0]; i++) {
-                    names[i] = userList.get(i).getName();
-                    energies[i] = String.valueOf(userList.get(i).getEnergy());
-                }
-            }
-        };
-        thread.start();
-        Thread.sleep(100);
+
+        // 查询排名
+        List<User> userList = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select name, energy from user order by energy desc",
+                null);
+        while (cursor.moveToNext()) {
+            User user = new User();
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            int energy = cursor.getInt(cursor.getColumnIndex("energy"));
+            user.setName(name);
+            user.setEnergy(energy);
+            userList.add(user);
+        }
+        cursor.close();
+        len[0] = userList.size();
+        for (int i = 0; i < len[0]; i++) {
+            names[i] = userList.get(i).getName();
+            energies[i] = String.valueOf(userList.get(i).getEnergy());
+        }
+
         List<Map<String, Object>> list = new ArrayList<>();
         for (int i = 0; i < len[0]; i++) {
             Map<String, Object> map = new HashMap<>();
