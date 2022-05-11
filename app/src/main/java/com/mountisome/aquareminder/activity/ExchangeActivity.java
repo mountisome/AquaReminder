@@ -3,6 +3,7 @@ package com.mountisome.aquareminder.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     private String name;
     private int energy;
     private int treeId; // 树的序号
+    private String planted;
     private SQLiteDatabase db;
 
     @Override
@@ -88,34 +90,27 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void exchangeTree() {
-        if ((treeId == 0 || treeId == 1) && energy >= ENERGY_1) {
-            Thread thread = new Thread() {
-                @Override
-                public void run() {
-                    updateTree(name, ENERGY_1, treeId);
-                }
-            };
-            thread.start();
+        Cursor cursor = db.rawQuery("SELECT planted FROM user WHERE name = ?", new String[]
+                {name});
+        if (cursor.moveToNext()) {
+            planted = cursor.getString(cursor.getColumnIndex("planted"));
+        }
+        cursor.close();
+
+        // 如果已拥有某个树木，则无法兑换
+        if (planted.charAt(treeId) == '1')
+            Toast.makeText(ExchangeActivity.this, "已拥有该树木，无法兑换！",
+                    Toast.LENGTH_SHORT).show();
+        else if ((treeId == 0 || treeId == 1) && energy >= ENERGY_1) {
+            updateTree(name, ENERGY_1, treeId);
             exchangeToBottom();
         }
         else if (treeId == 2 && energy >= ENERGY_2) {
-            Thread thread = new Thread() {
-                @Override
-                public void run() {
-                    updateTree(name, ENERGY_2, treeId);
-                }
-            };
-            thread.start();
+            updateTree(name, ENERGY_2, treeId);
             exchangeToBottom();
         }
         else if (treeId == 3 && energy >= ENERGY_3) {
-            Thread thread = new Thread() {
-                @Override
-                public void run() {
-                    updateTree(name, ENERGY_3, treeId);
-                }
-            };
-            thread.start();
+            updateTree(name, ENERGY_3, treeId);
             exchangeToBottom();
         }
         else {
@@ -129,7 +124,6 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
         String sql = "update user set energy = energy - ? where name = ?";
         Object[] args = new Object[]{energy, name};
         db.execSQL(sql, args);
-        String planted = "0000";
         StringBuilder stringBuilder = new StringBuilder(planted);
         stringBuilder.setCharAt(treeId, '1');
         planted = stringBuilder.toString();

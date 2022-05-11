@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Looper.prepare();
                     Toast.makeText(MainActivity.this, "登录成功！",
                             Toast.LENGTH_SHORT).show();
-                    String sql = "update user set water = 0, day = 1, average_water = 0, average_time = 0," +
+                    String sql = "update user set water = 0, day = 0, average_water = 0, average_time = 0," +
                             "total_water = 0, total_time = 0 where name = ?";
                     Object[] args = new Object[]{user.getName()};
                     db.execSQL(sql, args);

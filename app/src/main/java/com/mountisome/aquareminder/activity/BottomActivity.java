@@ -150,7 +150,7 @@ public class BottomActivity extends AppCompatActivity implements RadioGroup.OnCh
         Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]
                 {name});
         if (cursor.moveToNext()) {
-            day = cursor.getInt(cursor.getColumnIndex("day")) - 1;
+            day = cursor.getInt(cursor.getColumnIndex("day"));
             total_water = cursor.getInt(cursor.getColumnIndex("total_water"));
             total_time = cursor.getInt(cursor.getColumnIndex("total_time"));
         }

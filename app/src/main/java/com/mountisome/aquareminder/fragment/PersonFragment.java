@@ -1,6 +1,5 @@
 package com.mountisome.aquareminder.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
@@ -77,6 +76,7 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
                 startActivity(intent);
                 break;
             case 2:
+
                 alert = null;
                 builder = new AlertDialog.Builder(getActivity());
                 alert = builder.setTitle("给个好评")

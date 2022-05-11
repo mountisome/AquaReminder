@@ -27,8 +27,8 @@ public class SQLCon {
     // 插入数据
     public static final String INSERT = "INSERT INTO user(id,name,pwd,mailbox,water,energy,planted,"
             + "day,average_water,average_time,total_water,total_time) VALUES" +
-            "(1,'user1','123','123@qq.com',0,100,'0000',1,0,0,0,0)," +
-            "(2,'user2','1234','1234@qq.com',0,5,'0000',1,0,0,0,0)," +
-            "(3,'user3','12345','12345@qq.com',0,0,'0000',1,0,0,0,0);";
+            "(1,'user1','123','123@qq.com',0,100,'0000',0,0,0,0,0)," +
+            "(2,'user2','1234','1234@qq.com',0,5,'0000',0,0,0,0,0)," +
+            "(3,'user3','12345','12345@qq.com',0,0,'0000',0,0,0,0,0);";
 
 }
