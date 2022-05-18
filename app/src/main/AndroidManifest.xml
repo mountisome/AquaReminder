@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
+            android:name=".activity.PersonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RatingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.RankActivity"
             android:exported="false" />
         <activity

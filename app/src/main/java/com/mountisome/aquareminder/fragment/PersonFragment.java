@@ -11,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.mountisome.aquareminder.R;
+import com.mountisome.aquareminder.activity.PersonActivity;
 import com.mountisome.aquareminder.activity.RankActivity;
+import com.mountisome.aquareminder.activity.RatingActivity;
 import com.mountisome.aquareminder.utils.MySQLHelper;
 
 import java.util.ArrayList;
@@ -30,12 +33,12 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
     private int day; // 喝水天数
     private int average_water; // 平均喝水量
     private int average_time; // 平均次数
+    private ImageView iv_picture; // 头像
     private TextView tv_day; // 喝水天数
     private TextView tv_average_water; // 平均喝水量
     private TextView tv_average_time; // 平均次数
     private ListView listView;
     private SimpleAdapter simpleAdapter;
-    private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
     private SQLiteDatabase db;
 
@@ -56,7 +59,20 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
         listView.setAdapter(simpleAdapter);
         listView.addHeaderView(new View(getActivity()));
         listView.setOnItemClickListener(this);
+
+        iv_picture = view.findViewById(R.id.iv_picture);
+
         TextView fg_person = view.findViewById(R.id.fg_person);
+        fg_person.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PersonActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", name);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         fg_person.setText(name);
 
         db = new MySQLHelper(getActivity()).getWritableDatabase();
@@ -76,18 +92,9 @@ public class PersonFragment extends Fragment implements AdapterView.OnItemClickL
                 startActivity(intent);
                 break;
             case 2:
-
-                alert = null;
-                builder = new AlertDialog.Builder(getActivity());
-                alert = builder.setTitle("给个好评")
-                        .setMessage("开发中，敬请期待！").setNegativeButton("好的",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                }).create();
-                alert.show();
+                intent = new Intent(getActivity(), RatingActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

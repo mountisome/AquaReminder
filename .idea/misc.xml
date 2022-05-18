@@ -42,15 +42,25 @@
         <entry key="..\:/AquaReminder/app/src/main/res/layout/tree_menu.xml" value="0.25364583333333335" />
         <entry key="..\:/AquaReminder/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14583333333333334" />
         <entry key="..\:/AquaReminder/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21574074074074073" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/drawable/add.xml" value="0.21574074074074073" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/drawable/aloe_vera1.xml" value="0.19814814814814816" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/drawable/ic_____.xml" value="0.21574074074074073" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/drawable/smile.xml" value="0.21574074074074073" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_add.xml" value="0.25364583333333335" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_bottom.xml" value="0.2341485507246377" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_bottom_fragment.xml" value="0.2513586956521739" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_choose_tree.xml" value="0.24320652173913043" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_person.xml" value="0.23052536231884058" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_planted.xml" value="0.24320652173913043" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_rank.xml" value="0.25364583333333335" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/activity_rating.xml" value="0.25364583333333335" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/fragment_drink.xml" value="0.2513586956521739" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/fragment_person.xml" value="0.25364583333333335" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/fragment_tree.xml" value="0.23052536231884058" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/info_menu.xml" value="0.23052536231884058" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/rank_menu.xml" value="0.2269021739130435" />
+        <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/tree_menu.xml" value="0.23052536231884058" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/view_aloe_vera.xml" value="0.23369565217391305" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/view_echinopsis_tubiflora.xml" value="0.23369565217391305" />
         <entry key="..\:/projects/AquaReminder/app/src/main/res/layout/view_green_rose.xml" value="0.23369565217391305" />
