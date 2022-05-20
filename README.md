@@ -22,6 +22,10 @@
     - 兑换后树木可以在已种植中查看
 - 用户排名：
     - app将会按照能量多少将所有用户排名
+- 给个好评：
+    - 用户可以给app打分
+- 个人信息：
+    - 用户可以看到个人信息，包括各种数据
 
 
 
@@ -62,4 +66,14 @@
 用户排名界面：
 
 <div align=center><img src="https://mountisomeb1.oss-cn-shanghai.aliyuncs.com/img/202203262208053.png"></div>
+
+给个好评界面：
+
+<div align=center><img src="
+https://mountisomeb1.oss-cn-shanghai.aliyuncs.com/img/202205200959869.png"></div>
+
+个人信息界面：
+
+<div align=center><img src="
+https://mountisomeb1.oss-cn-shanghai.aliyuncs.com/img/202205200959591.png"></div>
 
