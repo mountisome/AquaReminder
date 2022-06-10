@@ -22,7 +22,7 @@ public class Histogram extends View {
     int mColor;
     Context mContext;
 
-    //构造函数
+    // 构造函数
     public Histogram(Context context) {
         super(context);
         mContext = context;
@@ -72,7 +72,7 @@ public class Histogram extends View {
         } else {
             tempData = data;
         }
-        //画圆角矩形
+        // 画圆角矩形
         String S = tempData + ""; // 如果数字后面需要加% 则在""中添加%
         // 设置显示的字体
         // Typeface typeface = Typeface.createFromAsset(getContext().getAssets(),"digital-7.ttf");

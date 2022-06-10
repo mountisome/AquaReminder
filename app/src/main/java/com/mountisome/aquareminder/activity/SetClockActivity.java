@@ -103,9 +103,7 @@ public class SetClockActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, hour);
-        if (minute != 0) {
-            calendar.set(Calendar.MINUTE, minute);
-        }
+        calendar.set(Calendar.MINUTE, minute);
         Intent intent = new Intent(SetClockActivity.this, ClockActivity.class);
         pi = PendingIntent.getActivity(SetClockActivity.this, 0, intent, 0);
 
