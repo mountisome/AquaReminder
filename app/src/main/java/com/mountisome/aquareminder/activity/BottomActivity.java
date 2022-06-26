@@ -20,6 +20,7 @@ import com.mountisome.aquareminder.fragment.DrinkFragment;
 import com.mountisome.aquareminder.fragment.PersonFragment;
 import com.mountisome.aquareminder.fragment.TreeFragment;
 import com.mountisome.aquareminder.utils.MySQLHelper;
+import com.mountisome.aquareminder.utils.SQLCon;
 
 
 public class BottomActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -130,22 +131,18 @@ public class BottomActivity extends AppCompatActivity implements RadioGroup.OnCh
     }
 
     public void updateUserInfo() {
-        // 更新总喝水量
-        String sql = "update user set total_water = total_water + ? where name = ?";
-        Object[] args = new Object[]{water, name};
-        Object[] args2 = new Object[]{name};
-        db.execSQL(sql, args);
+        Object[] args = new Object[]{name};
         if (water > 0) {
-            String sql2 = "update user set day = day + 1 where name = ?";
-            db.execSQL(sql2, args2);
+            String sql = "update user set day = day + 1 where name = ?";
+            db.execSQL(sql, args);
         }
         if (water >= 1500) {
-            String sql3 = "update user set energy = energy + 1 where name = ?";
-            db.execSQL(sql3, args2);
+            String sql2 = "update user set energy = energy + 1 where name = ?";
+            db.execSQL(sql2, args);
         }
         args = new Object[]{0, name};
-        String sql4 = "update user set water = ? where name = ?";
-        db.execSQL(sql4, args);
+        String sql3 = "update user set water = ? where name = ?";
+        db.execSQL(sql3, args);
         // 更新平均喝水量
         Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]
                 {name});
@@ -154,13 +151,13 @@ public class BottomActivity extends AppCompatActivity implements RadioGroup.OnCh
             total_water = cursor.getInt(cursor.getColumnIndex("total_water"));
             total_time = cursor.getInt(cursor.getColumnIndex("total_time"));
         }
-        String sql5 = "update user set average_water = ? where name = ?";
-        Object[] args3 = new Object[]{total_water / day, name};
-        db.execSQL(sql5, args3);
+        String sql4 = "update user set average_water = ? where name = ?";
+        Object[] args2 = new Object[]{total_water / day, name};
+        db.execSQL(sql4, args2);
         // 更新平均次数
-        String sql6 = "update user set average_time = ? where name = ?";
-        Object[] args4 = new Object[]{total_time / day, name};
-        db.execSQL(sql6, args4);
+        String sql5 = "update user set average_time = ? where name = ?";
+        Object[] args3 = new Object[]{total_time / day, name};
+        db.execSQL(sql5, args3);
         cursor.close();
     }
 

@@ -71,6 +71,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 }
                 water += Integer.parseInt(ed_water.getText().toString());
                 addWater(water);
+                updateTotalWater(Integer.parseInt(ed_water.getText().toString()));
                 updateTotalTime();
                 Intent intent = new Intent(AddActivity.this, BottomActivity.class);
                 Bundle bundle = new Bundle();
@@ -96,6 +97,13 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     // 添加水量
     public void addWater(int water) {
         String sql = "update user set water = ? where name = ?";
+        Object[] args = new Object[]{water, name};
+        db.execSQL(sql, args);
+    }
+
+    // 更新喝水总量
+    public void updateTotalWater(int water) {
+        String sql = "update user set total_water = total_water + ? where name = ?";
         Object[] args = new Object[]{water, name};
         db.execSQL(sql, args);
     }
